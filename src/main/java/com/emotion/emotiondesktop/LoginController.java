@@ -26,12 +26,12 @@ public class LoginController {
     public void userLogIn() {
         String email = emailField.getText();
         String password = passwordField.getText();
-        if ("admin@mail.com".equals(email) && "admin".equals(password)) {
+        if ("admin@example.com".equals(email) && "admin".equals(password)) {
             loginInfo.setText("ok");
         } else if (email.isEmpty() || password.isEmpty()) {
             loginInfo.setText("Please fill in all fields");
         } else if (!email.contains("@") || !email.contains(".")) {
-            loginInfo.setText("Invalid email");
+            loginInfo.setText("Invalid email format");
         } else {
             loginInfo.setText("Wrong email or password");
         }

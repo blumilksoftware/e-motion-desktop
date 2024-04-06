@@ -38,7 +38,7 @@ class LoginControllerTest {
 
     @Test
     void testUserLogIn_ValidCredentials() {
-        emailField.setText("admin@mail.com");
+        emailField.setText("admin@example.com");
         passwordField.setText("admin");
         loginController.userLogIn();
         assertEquals("ok", loginInfo.getText());
@@ -57,7 +57,7 @@ class LoginControllerTest {
         emailField.setText("invalid_email");
         passwordField.setText("password");
         loginController.userLogIn();
-        assertEquals("Invalid email", loginInfo.getText());
+        assertEquals("Invalid email format", loginInfo.getText());
     }
 
     @Test
