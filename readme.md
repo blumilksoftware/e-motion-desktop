@@ -1,5 +1,9 @@
 ## e-motion-desktop
 Requires Java 17 or later.
-To start the project, run the following commands using wrapper:
+When running the project for the first time using mvn wrapper:
 
-```javafx:run```
+```mvn clean install```
+
+To start the project using maven wrapper, run the following command
+
+```mvn javafx:run```
