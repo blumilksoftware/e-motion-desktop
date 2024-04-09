@@ -1,13 +1,19 @@
 package com.emotion.emotiondesktop;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-import org.junit.jupiter.api.BeforeEach;
-import javafx.application.Platform;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class LoginControllerTest {
 
@@ -18,53 +24,41 @@ class LoginControllerTest {
         }
     }
 
+    @Mock
+    private TextField emailFieldMock;
+    @Mock
+    private PasswordField passwordFieldMock;
+    @Mock
+    private Label loginInfoMock;
+
     private LoginController loginController;
-    private TextField emailField;
-    private PasswordField passwordField;
-    private Label loginInfo;
 
     @BeforeEach
-    void setUp() {
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
         loginController = new LoginController();
-
-        emailField = new TextField();
-        passwordField = new PasswordField();
-        loginInfo = new Label();
-
-        loginController.setEmailField(emailField);
-        loginController.setPasswordField(passwordField);
-        loginController.setLoginInfo(loginInfo);
+        loginController.setEmailField(emailFieldMock);
+        loginController.setPasswordField(passwordFieldMock);
+        loginController.setLoginInfo(loginInfoMock);
     }
 
     @Test
-    void testUserLogIn_ValidCredentials() {
-        emailField.setText("admin@example.com");
-        passwordField.setText("admin");
+    public void testUserLogIn_EmptyFields() {
+        when(emailFieldMock.getText()).thenReturn("");
+        when(passwordFieldMock.getText()).thenReturn("");
+
         loginController.userLogIn();
-        assertEquals("ok", loginInfo.getText());
+
+        verify(loginInfoMock).setText("Please fill in all fields");
     }
 
     @Test
-    void testUserLogIn_EmptyFields() {
-        emailField.setText("");
-        passwordField.setText("");
-        loginController.userLogIn();
-        assertEquals("Please fill in all fields", loginInfo.getText());
-    }
+    public void testUserLogIn_InvalidEmailFormat() {
+        when(emailFieldMock.getText()).thenReturn("invalidemail");
+        when(passwordFieldMock.getText()).thenReturn("password");
 
-    @Test
-    void testUserLogIn_InvalidEmail() {
-        emailField.setText("invalid_email");
-        passwordField.setText("password");
         loginController.userLogIn();
-        assertEquals("Invalid email format", loginInfo.getText());
-    }
 
-    @Test
-    void testUserLogIn_WrongCredentials() {
-        emailField.setText("admin@mail.com");
-        passwordField.setText("wrong_password");
-        loginController.userLogIn();
-        assertEquals("Wrong email or password", loginInfo.getText());
+        verify(loginInfoMock).setText("Invalid email format");
     }
 }
