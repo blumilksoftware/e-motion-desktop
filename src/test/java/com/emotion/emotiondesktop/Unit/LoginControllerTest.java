@@ -1,14 +1,11 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Unit;
 
+import com.emotion.emotiondesktop.LoginController;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -20,7 +17,8 @@ class LoginControllerTest {
     @BeforeAll
     public static void initJFX() {
         if (!Platform.isFxApplicationThread()) {
-            Platform.startup(() -> {});
+            Platform.startup(() -> {
+            });
         }
     }
 
