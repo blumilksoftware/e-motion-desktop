@@ -43,7 +43,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void testUserLogIn_Success() {
+    public void testUserLogInSuccess() {
         when(emailFieldMock.getText()).thenReturn("admin@example.com");
         when(passwordFieldMock.getText()).thenReturn("password");
 
@@ -53,12 +53,12 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void testUserLogIn_Failed() {
+    public void testUserLogInFailed() {
         when(emailFieldMock.getText()).thenReturn("admi1n@example.com");
         when(passwordFieldMock.getText()).thenReturn("password");
 
         loginController.userLogIn();
 
-        verify(loginInfoMock).setText("Failed to log in. Invalid email or password.");
+        verify(loginInfoMock).setText("Invalid email or password.");
     }
 }

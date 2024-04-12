@@ -73,7 +73,7 @@ public class LoginController {
             connection.disconnect();
 
         } catch (Exception e) {
-            loginInfo.setText("Failed to log in. Invalid email or password.");
+            loginInfo.setText("Invalid email or password.");
         }
     }
 }
