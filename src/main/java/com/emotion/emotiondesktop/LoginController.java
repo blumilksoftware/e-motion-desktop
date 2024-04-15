@@ -9,9 +9,13 @@ import lombok.Getter;
 import lombok.Setter;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class LoginController {
 
@@ -29,6 +33,11 @@ public class LoginController {
     private Label loginInfo;
     @Setter
     private String apiUrl = "https://dev.escooters.blumilk.pl/api/login";
+    @Getter
+    private String accessToken;
+    @Setter
+    @Getter
+    private boolean isAdmin = false;
 
     public void userLogIn() {
         String email = emailField.getText();
@@ -52,21 +61,21 @@ public class LoginController {
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
 
-            DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
-            outputStream.writeBytes(jsonPayload);
-            outputStream.flush();
-            outputStream.close();
+            JSONObject jsonResponse = getJsonObject(connection, jsonPayload);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
+            accessToken = jsonResponse.getString("access_token");
+            JSONArray roleArray = jsonResponse.getJSONArray("0");
+
+            for (int i = 0; i < roleArray.length(); i++) {
+                String currentValue = roleArray.getString(i);
+                if (currentValue.equals("HasAdminRole")) {
+                    isAdmin = true;
+                    break;
+                }
             }
-            reader.close();
 
             int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
+            if (responseCode == HttpURLConnection.HTTP_OK && isAdmin) {
                 loginInfo.setText("Login successful");
             }
 
@@ -75,5 +84,22 @@ public class LoginController {
         } catch (Exception e) {
             loginInfo.setText("Invalid email or password.");
         }
+    }
+
+    private static JSONObject getJsonObject(HttpURLConnection connection, String jsonPayload) throws IOException {
+        DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+        outputStream.writeBytes(jsonPayload);
+        outputStream.flush();
+        outputStream.close();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+        }
+        reader.close();
+
+        return new JSONObject(response.toString());
     }
 }
