@@ -43,7 +43,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void testUserLogInSuccess() {
+    public void testUserCanLogin() {
         when(emailFieldMock.getText()).thenReturn("admin@example.com");
         when(passwordFieldMock.getText()).thenReturn("password");
 
