@@ -53,7 +53,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void testUserLogInFailed() {
+    public void testUserCannotLoginWithInvalidEmail() {
         when(emailFieldMock.getText()).thenReturn("admi1n@example.com");
         when(passwordFieldMock.getText()).thenReturn("password");
 
