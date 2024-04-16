@@ -41,7 +41,7 @@ class LoginControllerTest {
     }
 
     @Test
-    public void testUserLogInEmptyFields() {
+    public void testUserCannotLoginWithoutCredentials() {
         when(emailFieldMock.getText()).thenReturn("");
         when(passwordFieldMock.getText()).thenReturn("");
 
