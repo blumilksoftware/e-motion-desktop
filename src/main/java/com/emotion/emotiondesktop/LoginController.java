@@ -34,7 +34,7 @@ public class LoginController {
     @Setter
     private String apiUrl = "https://dev.escooters.blumilk.pl/api/login";
     @Getter
-    private String accessToken;
+    private static String accessToken;
     @Setter
     @Getter
     private boolean isAdmin = false;
@@ -77,6 +77,7 @@ public class LoginController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK && isAdmin) {
                 loginInfo.setText("Login successful");
+                EmotionApplication.showCitiesCrudView();
             }
 
             connection.disconnect();

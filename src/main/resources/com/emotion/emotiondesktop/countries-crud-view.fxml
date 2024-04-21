@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.CitiesCrudController">
+    <children>
+        <BorderPane layoutX="510.0" layoutY="340.0">
+            <left>
+                <VBox prefWidth="314.0" spacing="20.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="citiesButton" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="CRUD Cities">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: ffffff;" text="CRUD Countries">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="providersButton" mnemonicParsing="false" onAction="#showProvidersCrudView" style="-fx-background-color: ffffff;" text="CRUD Providers">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: ffffff;" text="CRUD Opinions">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: ffffff;" text="CRUD Users">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="importersButton" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="Importers">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="mapButton" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="View map">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </left>
+            <center>
+                <VBox prefHeight="283.0" prefWidth="285.0" spacing="10.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label text="Name" />
+                        <TextField fx:id="saveNameField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd;" />
+                        <Label text="Longitude" />
+                        <TextField fx:id="saveLongitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd;" />
+                        <Label text="Latitude" />
+                        <TextField fx:id="saveLatitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd;" />
+                        <Label text="Country" />
+                        <TextField fx:id="saveCountryIdField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd;" />
+                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveCity" text="Save" />
+                        <Label fx:id="saveInfo" text="Label" />
+                    </children>
+                </VBox>
+            </center>
+            <right>
+                <TableView fx:id="tableView" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                        <TableColumn fx:id="longitudeColumn" prefWidth="75.0" text="Longitude" />
+                        <TableColumn fx:id="latitudeColumn" prefWidth="75.0" text="Latitude" />
+                        <TableColumn fx:id="countryIdColumn" prefWidth="75.0" text="countryId" />
+                    </columns>
+                </TableView>
+            </right>
+        </BorderPane>
+    </children>
+</AnchorPane>
