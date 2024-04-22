@@ -83,6 +83,7 @@ public class LoginController {
             connection.disconnect();
 
         } catch (Exception e) {
+            e.printStackTrace();
             loginInfo.setText("Invalid email or password.");
         }
     }

@@ -115,8 +115,8 @@ public class CitiesCrudController {
         if (longitude.isEmpty() || latitude.isEmpty() || countryId.isEmpty() || name.isEmpty()) {
             saveInfo.setText("Please fill in all fields");
             return;
-        } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+")) {
-            saveInfo.setText("Longitude and latitude must be numbers");
+        } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !countryId.matches("[-+]?[0-9]*\\.?[0-9]+")) {
+            saveInfo.setText("Longitude, latitude and country id must be numbers");
             return;
         }
 
@@ -136,7 +136,7 @@ public class CitiesCrudController {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
-                saveInfo.setText("City saved");
+                saveInfo.setText("City saved" + jsonInputString);
                 refresh();
             } else {
                 saveInfo.setText("Error while saving city");
@@ -190,14 +190,18 @@ public class CitiesCrudController {
 
             connection.setRequestMethod("PUT");
             connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
+            connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
+
+            String jsonInputString = "{\"name\": \"" + name + "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"country_id\": " + countryId + "}";
+            connection.getOutputStream().write(jsonInputString.getBytes());
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                editInfo.setText("City edited" + responseCode);
+                editInfo.setText("City edited");
                 refresh();
             } else {
-                editInfo.setText(" " + apiUrl + " " + responseCode);
+                editInfo.setText("Error while editing city");
             }
 
             connection.disconnect();

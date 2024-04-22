@@ -3,53 +3,58 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.CitiesCrudController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.CountriesCrudController">
     <children>
-        <BorderPane layoutX="510.0" layoutY="340.0">
+        <BorderPane prefHeight="1080.0" prefWidth="1920.0">
             <left>
-                <VBox prefWidth="314.0" spacing="20.0" BorderPane.alignment="CENTER">
+                <VBox spacing="20.0" style="-fx-background-color: #f4f8fd; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="citiesButton" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="CRUD Cities">
+                        <Button fx:id="citiesButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Countries">
                             <font>
-                                <Font name="Microsoft Sans Serif" size="18.0" />
+                                <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: ffffff;" text="CRUD Countries">
+                        <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Countries">
                             <font>
-                                <Font name="Microsoft Sans Serif" size="18.0" />
+                                <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="providersButton" mnemonicParsing="false" onAction="#showProvidersCrudView" style="-fx-background-color: ffffff;" text="CRUD Providers">
+                        <Button fx:id="providersButton" mnemonicParsing="false" onAction="#showProvidersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Providers">
                             <font>
-                                <Font name="Microsoft Sans Serif" size="18.0" />
+                                <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: ffffff;" text="CRUD Opinions">
+                        <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Opinions">
                             <font>
-                                <Font name="Microsoft Sans Serif" size="18.0" />
+                                <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: ffffff;" text="CRUD Users">
+                        <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Users">
                             <font>
-                                <Font name="Microsoft Sans Serif" size="18.0" />
+                                <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="importersButton" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="Importers">
+                        <Button fx:id="importersButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="Importers">
                             <font>
-                                <Font name="Microsoft Sans Serif" size="18.0" />
+                                <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="mapButton" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="View map">
+                        <Button fx:id="mapButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="View map">
                             <font>
-                                <Font name="Microsoft Sans Serif" size="18.0" />
+                                <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
                     </children>
@@ -58,32 +63,112 @@
                     </padding>
                 </VBox>
             </left>
-            <center>
-                <VBox prefHeight="283.0" prefWidth="285.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <right>
+                <VBox BorderPane.alignment="CENTER">
                     <children>
-                        <Label text="Name" />
-                        <TextField fx:id="saveNameField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd;" />
-                        <Label text="Longitude" />
-                        <TextField fx:id="saveLongitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd;" />
-                        <Label text="Latitude" />
-                        <TextField fx:id="saveLatitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd;" />
-                        <Label text="Country" />
-                        <TextField fx:id="saveCountryIdField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd;" />
-                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveCity" text="Save" />
-                        <Label fx:id="saveInfo" text="Label" />
+                        <TableView fx:id="tableView" prefHeight="965.0" prefWidth="853.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 1 1 1;">
+                            <columns>
+                                <TableColumn fx:id="idColumn" prefWidth="50.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 0; -fx-font-size: 14;" text="Country ID" />
+                                <TableColumn fx:id="nameColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Name" />
+                                <TableColumn fx:id="longitudeColumn" minWidth="0.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Longitude" />
+                                <TableColumn fx:id="latitudeColumn" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Latitude" />
+                                <TableColumn fx:id="isoColumn" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="ISO" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </TableView>
+                        <HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 1 0 0;">
+                            <children>
+                                <TextField fx:id="searchField" style="-fx-background-color: ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchInTable" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Search" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="5.0" top="5.0" />
+                            </VBox.margin>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </HBox>
                     </children>
                 </VBox>
-            </center>
-            <right>
-                <TableView fx:id="tableView" BorderPane.alignment="CENTER">
-                    <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-                        <TableColumn fx:id="longitudeColumn" prefWidth="75.0" text="Longitude" />
-                        <TableColumn fx:id="latitudeColumn" prefWidth="75.0" text="Latitude" />
-                        <TableColumn fx:id="countryIdColumn" prefWidth="75.0" text="countryId" />
-                    </columns>
-                </TableView>
             </right>
+            <center>
+                <TabPane style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 1 0 1;" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab closable="false" text="Save">
+                            <content>
+                                <VBox prefHeight="283.0" prefWidth="285.0" spacing="10.0">
+                                    <children>
+                                        <Label text="Name" />
+                                        <TextField fx:id="saveNameField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="Longitude" />
+                                        <TextField fx:id="saveLongitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="Latitude" />
+                                        <TextField fx:id="saveLatitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="ISO" />
+                                        <TextField fx:id="saveIsoField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <HBox spacing="10.0">
+                                            <children>
+                                                <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveCountry" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Save" />
+                                            </children>
+                                        </HBox>
+                                        <Label fx:id="saveInfo" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="100.0" left="50.0" right="50.0" top="10.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+                        <Tab closable="false" text="Edit &amp; Delete">
+                            <content>
+                                <VBox prefHeight="283.0" prefWidth="285.0" spacing="10.0">
+                                    <children>
+                                        <Label text="ID" />
+                                        <TextField fx:id="editIdField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="Name" />
+                                        <TextField fx:id="editNameField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="Longitude" />
+                                        <TextField fx:id="editLongitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="Latitude" />
+                                        <TextField fx:id="editLatitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="Country" />
+                                        <TextField fx:id="editIsoField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <HBox spacing="10.0">
+                                            <children>
+                                                <Button fx:id="selectButton" mnemonicParsing="false" onAction="#selectCountry" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Select" />
+                                                <Button fx:id="editButton" mnemonicParsing="false" onAction="#editCountry" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Edit" />
+                                                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteCountry" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Delete" />
+                                            </children>
+                                        </HBox>
+                                        <Label fx:id="editInfo" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="100.0" left="50.0" right="50.0" top="10.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </center>
+            <top>
+                <ImageView fitHeight="127.0" fitWidth="267.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
+                    <image>
+                        <Image url="@../../../images/logo.png" />
+                    </image>
+                    <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </BorderPane.margin>
+                </ImageView>
+            </top>
         </BorderPane>
     </children>
 </AnchorPane>
