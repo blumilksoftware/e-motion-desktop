@@ -1,14 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.emotion.emotiondesktop.ProvidersCrudView"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.ProvidersCrudController">
+    <children>
+        <BorderPane prefHeight="1080.0" prefWidth="1920.0">
+            <left>
+                <VBox spacing="20.0" style="-fx-background-color: #f4f8fd; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="citiesButton" mnemonicParsing="false" onAction="#showCitiesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Cities">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Providers">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="providersButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Providers">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Opinions">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Users">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="importersButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="Importers">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="mapButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="View map">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="15.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </left>
+            <right>
+                <VBox BorderPane.alignment="CENTER">
+                    <children>
+                        <TableView fx:id="tableView" prefHeight="965.0" prefWidth="853.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 1 1 1;">
+                            <columns>
+                                <TableColumn fx:id="nameColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Name" />
+                        <TableColumn fx:id="urlColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="URL" />
+                        <TableColumn fx:id="androidUrlColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Android URL" />
+                        <TableColumn fx:id="iosUrlColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="IOS URL" />
+                                <TableColumn fx:id="fileColumn" minWidth="0.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="File" />
+                        <TableColumn fx:id="colorColumn" minWidth="0.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Color" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </TableView>
+                        <HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 1 0 0;">
+                            <children>
+                                <TextField fx:id="searchField" style="-fx-background-color: ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchInTable" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Search" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="5.0" top="5.0" />
+                            </VBox.margin>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </HBox>
+                    </children>
+                </VBox>
+            </right>
+            <center>
+                <TabPane style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 1 0 1;" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab closable="false" text="Save">
+                            <content>
+                                <VBox prefHeight="283.0" prefWidth="285.0" spacing="10.0">
+                                    <children>
+                                        <Label text="Name" />
+                                        <TextField fx:id="saveNameField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                              <Label text="File" />
+                              <TextField fx:id="saveFileField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="Color" />
+                                        <TextField fx:id="saveColorField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <HBox spacing="10.0">
+                                            <children>
+                                                <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveProvider" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Save" />
+                                            </children>
+                                        </HBox>
+                                        <Label fx:id="saveInfo" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="100.0" left="50.0" right="50.0" top="10.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+                        <Tab closable="false" text="Edit &amp; Delete">
+                            <content>
+                                <VBox prefHeight="283.0" prefWidth="285.0" spacing="10.0">
+                                    <children>
+                                        <Label text="Name" />
+                                        <TextField fx:id="editNameField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                              <Label text="File" />
+                              <TextField fx:id="editFileField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <Label text="Color" />
+                                        <TextField fx:id="editColorField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                                        <HBox spacing="10.0">
+                                            <children>
+                                                <Button fx:id="selectButton" mnemonicParsing="false" onAction="#selectProvider" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Select" />
+                                                <Button fx:id="editButton" mnemonicParsing="false" onAction="#editProvider" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Edit" />
+                                                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteProvider" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Delete" />
+                                            </children>
+                                        </HBox>
+                                        <Label fx:id="editInfo" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="100.0" left="50.0" right="50.0" top="10.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </center>
+            <top>
+                <ImageView fitHeight="127.0" fitWidth="267.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
+                    <image>
+                        <Image url="@../../../images/logo.png" />
+                    </image>
+                    <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </BorderPane.margin>
+                </ImageView>
+            </top>
+        </BorderPane>
+    </children>
 </AnchorPane>

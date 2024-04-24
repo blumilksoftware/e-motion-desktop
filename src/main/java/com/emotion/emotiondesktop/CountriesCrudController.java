@@ -265,8 +265,8 @@ public class CountriesCrudController {
         tableView.setItems(filteredCountries);
     }
 
-    public void showCountriesCrudView() throws IOException {
-        EmotionApplication.showCountriesCrudView();
+    public void showCitiesCrudView() throws IOException {
+        EmotionApplication.showCitiesCrudView();
     }
 
     public void showProvidersCrudView() throws IOException {

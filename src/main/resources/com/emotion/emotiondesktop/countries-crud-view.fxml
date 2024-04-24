@@ -22,12 +22,12 @@
             <left>
                 <VBox spacing="20.0" style="-fx-background-color: #f4f8fd; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="citiesButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Countries">
+                        <Button fx:id="citiesButton" mnemonicParsing="false" onAction="#showCitiesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Cities">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Countries">
+                        <Button fx:id="countriesButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Countries">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
