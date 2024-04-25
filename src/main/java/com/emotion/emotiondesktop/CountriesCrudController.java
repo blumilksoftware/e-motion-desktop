@@ -142,7 +142,7 @@ public class CountriesCrudController {
                 saveInfo.setText("Country saved");
                 refresh();
             } else {
-                saveInfo.setText(jsonInputString);
+                saveInfo.setText("Error while saving country");
             }
 
             connection.disconnect();
@@ -204,10 +204,10 @@ public class CountriesCrudController {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                editInfo.setText("Country edited" + responseCode);
+                editInfo.setText("Country edited");
                 refresh();
             } else {
-                editInfo.setText(" " + apiUrl + " " + responseCode);
+                editInfo.setText("Error while editing country");
             }
 
             connection.disconnect();
@@ -279,5 +279,9 @@ public class CountriesCrudController {
 
     public void showUsersCrudView() throws IOException {
         EmotionApplication.showUsersCrudView();
+    }
+
+    public void showImportersView() throws IOException {
+        EmotionApplication.showImportersView();
     }
 }

@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import lombok.Getter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -46,6 +47,7 @@ public class CitiesCrudController {
     private TableColumn<City, Double> latitudeColumn;
     @FXML
     private TableColumn<City, Integer> countryIdColumn;
+    @Getter
     private final ObservableList<City> citiesData = FXCollections.observableArrayList();
     @FXML
     private Label saveInfo;
@@ -91,8 +93,8 @@ public class CitiesCrudController {
                 JSONObject cityObject = citiesArray.getJSONObject(i);
                 int id = cityObject.getInt("id");
                 String name = cityObject.getString("name");
-                double longitude = cityObject.getDouble("longitude");
-                double latitude = cityObject.getDouble("latitude");
+                double longitude = cityObject.optDouble("longitude");
+                double latitude = cityObject.optDouble("latitude");
                 int countryId = cityObject.getJSONObject("country").getInt("id");
 
                 City city = new City(id, name, longitude, latitude, countryId);
@@ -136,7 +138,7 @@ public class CitiesCrudController {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
-                saveInfo.setText("City saved" + jsonInputString);
+                saveInfo.setText("City saved");
                 refresh();
             } else {
                 saveInfo.setText("Error while saving city");
@@ -273,5 +275,9 @@ public class CitiesCrudController {
 
     public void showUsersCrudView() throws IOException {
         EmotionApplication.showUsersCrudView();
+    }
+
+    public void showImportersView() throws IOException {
+        EmotionApplication.showImportersView();
     }
 }

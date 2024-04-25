@@ -57,6 +57,14 @@ public class EmotionApplication extends Application {
         stage.show();
     }
 
+    public static void showImportersView() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("importers-view.fxml"));
+        Parent root = fxmlLoader.load();
+        stage.setTitle("E-motions Importers");
+        stage.setScene(new Scene(root, 1920, 1080));
+        stage.show();
+    }
+
     public static void showLoginView() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();

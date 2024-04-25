@@ -47,7 +47,7 @@
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="importersButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="Importers">
+                        <Button fx:id="importersButton" mnemonicParsing="false" onAction="#showImportersView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="Importers">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>

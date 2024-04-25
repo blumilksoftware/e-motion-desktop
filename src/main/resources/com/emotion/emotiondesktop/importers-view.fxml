@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.ImportersController">
+   <children>
+      <BorderPane prefHeight="1080.0" prefWidth="1920.0">
+         <left>
+            <VBox spacing="20.0" style="-fx-background-color: #f4f8fd; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="citiesButton" mnemonicParsing="false" onAction="#showCitiesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Cities">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Countries">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="providersButton" mnemonicParsing="false" onAction="#showProvidersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Providers">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Opinions">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Users">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="importersButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="Importers">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="mapButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="View map">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </left>
+         <right>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tableView" prefHeight="965.0" prefWidth="853.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 1 1 0;">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="50.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 0; -fx-font-size: 14;" text="ID" />
+                      <TableColumn fx:id="whoColumn" prefWidth="140.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Who runs it" />
+                      <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="115.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Status" />
+                        <TableColumn fx:id="providerNameColumn" prefWidth="137.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Provider name" />
+                        <TableColumn fx:id="codeColumn" prefWidth="109.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Code" />
+                        <TableColumn fx:id="whenColumn" prefWidth="309.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="When" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TableView>
+                  <HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 1 0 0;">
+                     <children>
+                        <TextField fx:id="searchField" style="-fx-background-color: ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchInTable" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Search" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+               </children>
+            </VBox>
+         </right>
+         <top>
+            <ImageView fitHeight="127.0" fitWidth="267.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
+               <image>
+                  <Image url="@../../../images/logo.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </top>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 1 1 1;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutX="14.0" layoutY="14.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="runImportersButton" mnemonicParsing="false" onAction="#runImporters" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Run importers" />
+                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Refresh" />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

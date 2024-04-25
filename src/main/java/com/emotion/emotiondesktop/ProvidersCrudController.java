@@ -137,7 +137,7 @@ public class ProvidersCrudController {
                 saveInfo.setText("Provider saved");
                 refresh();
             } else {
-                saveInfo.setText(jsonInputString + " " + responseCode);
+                saveInfo.setText("Error while saving provider");
             }
 
             connection.disconnect();
@@ -193,10 +193,10 @@ public class ProvidersCrudController {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                editInfo.setText("Provider edited" + responseCode);
+                editInfo.setText("Provider edited");
                 refresh();
             } else {
-                editInfo.setText(" " + apiUrl + " " + responseCode);
+                editInfo.setText("Error while editing provider");
             }
 
             connection.disconnect();
@@ -268,5 +268,9 @@ public class ProvidersCrudController {
 
     public void showUsersCrudView() throws IOException {
         EmotionApplication.showUsersCrudView();
+    }
+
+    public void showImportersView() throws IOException {
+        EmotionApplication.showImportersView();
     }
 }
