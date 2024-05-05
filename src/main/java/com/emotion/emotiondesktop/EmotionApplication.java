@@ -73,6 +73,14 @@ public class EmotionApplication extends Application {
         stage.show();
     }
 
+    public static void showMapView() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("map-view.fxml"));
+        Parent root = fxmlLoader.load();
+        stage.setTitle("E-motions Map");
+        stage.setScene(new Scene(root, 1920, 1080));
+        stage.show();
+    }
+
     public static void main(String[] args) {
         launch();
     }

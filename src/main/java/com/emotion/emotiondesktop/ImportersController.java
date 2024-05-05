@@ -151,4 +151,8 @@ public class ImportersController {
     public void showUsersCrudView() throws IOException {
         EmotionApplication.showUsersCrudView();
     }
+
+    public void showMapView() throws IOException {
+        EmotionApplication.showMapView();
+    }
 }

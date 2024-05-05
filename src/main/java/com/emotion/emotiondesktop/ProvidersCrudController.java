@@ -273,4 +273,8 @@ public class ProvidersCrudController {
     public void showImportersView() throws IOException {
         EmotionApplication.showImportersView();
     }
+
+    public void showMapView() throws IOException {
+        EmotionApplication.showMapView();
+    }
 }

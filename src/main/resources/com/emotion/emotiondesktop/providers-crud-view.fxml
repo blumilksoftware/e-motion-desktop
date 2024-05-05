@@ -22,37 +22,37 @@
             <left>
                 <VBox spacing="20.0" style="-fx-background-color: #f4f8fd; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="citiesButton" mnemonicParsing="false" onAction="#showCitiesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Cities">
+                        <Button fx:id="citiesButton" mnemonicParsing="false" onAction="#showCitiesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15;" text="CRUD Cities">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Providers">
+                        <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15;" text="CRUD Countries">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="providersButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Providers">
+                        <Button fx:id="providersButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15;" text="CRUD Providers">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Opinions">
+                        <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15;" text="CRUD Opinions">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="CRUD Users">
+                        <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15;" text="CRUD Users">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="importersButton" mnemonicParsing="false" onAction="#showImportersView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="Importers">
+                        <Button fx:id="importersButton" mnemonicParsing="false" onAction="#showImportersView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15;" text="Importers">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="mapButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif;" text="View map">
+                        <Button fx:id="mapButton" mnemonicParsing="false" onAction="#showMapView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15;" text="View map">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="15.0" />
                             </font>

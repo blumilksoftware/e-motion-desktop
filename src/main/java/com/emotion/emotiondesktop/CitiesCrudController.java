@@ -9,10 +9,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import lombok.Data;
 import lombok.Getter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+@Data
 public class CitiesCrudController {
 
     @FXML
@@ -279,5 +281,9 @@ public class CitiesCrudController {
 
     public void showImportersView() throws IOException {
         EmotionApplication.showImportersView();
+    }
+
+    public void showMapView() throws IOException {
+        EmotionApplication.showMapView();
     }
 }
