@@ -114,12 +114,15 @@ public class CountriesCrudController {
         String iso = saveIsoField.getText();
         if (longitude.isEmpty() || latitude.isEmpty() || iso.isEmpty() || name.isEmpty()) {
             saveInfo.setText("Please fill in all fields");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+")) {
             saveInfo.setText("Longitude and latitude must be numbers");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (iso.length() != 2) {
             saveInfo.setText("ISO code must be 2 characters long");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -140,9 +143,11 @@ public class CountriesCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
                 saveInfo.setText("Country saved");
+                saveInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 saveInfo.setText("Error while saving country");
+                saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -150,6 +155,7 @@ public class CountriesCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             saveInfo.setText("Error while saving country");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -157,6 +163,7 @@ public class CountriesCrudController {
         Country selectedCountry = tableView.getSelectionModel().getSelectedItem();
         if (selectedCountry == null) {
             saveInfo.setText("Please select a country to edit");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
         editIdField.setText(String.valueOf(selectedCountry.getId().get()));
@@ -170,6 +177,7 @@ public class CountriesCrudController {
         Country selectedCountry = tableView.getSelectionModel().getSelectedItem();
         if (selectedCountry == null) {
             editInfo.setText("Please select a country to edit");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -179,12 +187,15 @@ public class CountriesCrudController {
         String iso = editIsoField.getText();
         if (longitude.isEmpty() || latitude.isEmpty() || iso.isEmpty() || name.isEmpty()) {
             editInfo.setText("Please fill in all fields");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+")) {
             editInfo.setText("Longitude and latitude must be numbers");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (iso.length() != 2) {
             saveInfo.setText("ISO code must be 2 characters long");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -205,9 +216,11 @@ public class CountriesCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("Country edited");
+                editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 editInfo.setText("Error while editing country");
+                editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -215,6 +228,7 @@ public class CountriesCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             editInfo.setText("Error while editing country");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -222,6 +236,7 @@ public class CountriesCrudController {
         Country selectedCountry = tableView.getSelectionModel().getSelectedItem();
         if (selectedCountry == null) {
             editInfo.setText("Please select a country to delete");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -237,9 +252,11 @@ public class CountriesCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("Country deleted");
+                editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 editInfo.setText("Error while deleting country");
+                editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -247,6 +264,7 @@ public class CountriesCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             editInfo.setText("Error while deleting country");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -258,7 +276,11 @@ public class CountriesCrudController {
         }
         ObservableList<Country> filteredCountries = FXCollections.observableArrayList();
         for (Country country : countriesData) {
-            if (country.getName().getValue().contains(search)) {
+            if (String.valueOf(country.getId().getValue()).contains(search) ||
+                    country.getName().getValue().contains(search) ||
+                    String.valueOf(country.getLongitude().getValue()).contains(search) ||
+                    String.valueOf(country.getLatitude().getValue()).contains(search) ||
+                    String.valueOf(country.getIso().getValue()).contains(search)) {
                 filteredCountries.add(country);
             }
         }

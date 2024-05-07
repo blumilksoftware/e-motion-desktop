@@ -44,9 +44,11 @@ public class LoginController {
         String password = passwordField.getText();
         if (email.isEmpty() || password.isEmpty()) {
             loginInfo.setText("Please fill in all fields");
+            loginInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (!email.contains("@") || !email.contains(".")) {
             loginInfo.setText("Invalid email format");
+            loginInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -77,6 +79,7 @@ public class LoginController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK && isAdmin) {
                 loginInfo.setText("Login successful");
+                loginInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 EmotionApplication.showCitiesCrudView();
             }
 
@@ -85,6 +88,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
             loginInfo.setText("Invalid email or password.");
+            loginInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 

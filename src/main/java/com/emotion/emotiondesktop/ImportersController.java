@@ -125,7 +125,12 @@ public class ImportersController {
         }
         ObservableList<Importer> filteredImporters = FXCollections.observableArrayList();
         for (Importer importer : importersData) {
-            if (importer.getProviderName().getValue().contains(search)) {
+            if (String.valueOf(importer.getId().getValue()).contains(search) ||
+                    importer.getWho().getValue().contains(search) ||
+                    importer.getStatus().getValue().contains(search) ||
+                    importer.getProviderName().getValue().contains(search) ||
+                    String.valueOf(importer.getCode().getValue()).contains(search) ||
+                    importer.getWhen().getValue().contains(search)) {
                 filteredImporters.add(importer);
             }
         }
@@ -133,7 +138,7 @@ public class ImportersController {
     }
 
     public void showCitiesCrudView() throws IOException {
-        EmotionApplication.showCountriesCrudView();
+        EmotionApplication.showCitiesCrudView();
     }
 
     public void showCountriesCrudView() throws IOException {

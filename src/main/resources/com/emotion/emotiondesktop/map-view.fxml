@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import com.sothawo.mapjfx.MapView?>
 
+<?import javafx.scene.effect.DropShadow?>
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.MapController">
    <children>
       <BorderPane prefHeight="1080.0" prefWidth="1920.0">
@@ -51,6 +52,9 @@
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <effect>
+                        <DropShadow height="6.34" radius="2.67" width="6.34" />
+                     </effect>
                   </Button>
                </children>
                <padding>

@@ -118,9 +118,11 @@ public class CitiesCrudController {
         String countryId = saveCountryIdField.getText();
         if (longitude.isEmpty() || latitude.isEmpty() || countryId.isEmpty() || name.isEmpty()) {
             saveInfo.setText("Please fill in all fields");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !countryId.matches("[-+]?[0-9]*\\.?[0-9]+")) {
             saveInfo.setText("Longitude, latitude and country id must be numbers");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -141,9 +143,11 @@ public class CitiesCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
                 saveInfo.setText("City saved");
+                saveInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 saveInfo.setText("Error while saving city");
+                saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -151,6 +155,7 @@ public class CitiesCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             saveInfo.setText("Error while saving city");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -158,6 +163,7 @@ public class CitiesCrudController {
         City selectedCity = tableView.getSelectionModel().getSelectedItem();
         if (selectedCity == null) {
             saveInfo.setText("Please select a city to edit");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
         editIdField.setText(String.valueOf(selectedCity.getId().get()));
@@ -171,6 +177,7 @@ public class CitiesCrudController {
         City selectedCity = tableView.getSelectionModel().getSelectedItem();
         if (selectedCity == null) {
             editInfo.setText("Please select a city to edit");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -180,9 +187,11 @@ public class CitiesCrudController {
         String countryId = editCountryIdField.getText();
         if (longitude.isEmpty() || latitude.isEmpty() || countryId.isEmpty() || name.isEmpty()) {
             editInfo.setText("Please fill in all fields");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+")) {
             editInfo.setText("Longitude and latitude must be numbers");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -203,9 +212,11 @@ public class CitiesCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("City edited");
+                editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 editInfo.setText("Error while editing city");
+                editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -213,6 +224,7 @@ public class CitiesCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             editInfo.setText("Error while editing city");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -220,6 +232,7 @@ public class CitiesCrudController {
         City selectedCity = tableView.getSelectionModel().getSelectedItem();
         if (selectedCity == null) {
             editInfo.setText("Please select a city to delete");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -235,9 +248,11 @@ public class CitiesCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("City deleted");
+                editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 editInfo.setText("Error while deleting city");
+                editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -245,6 +260,7 @@ public class CitiesCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             editInfo.setText("Error while deleting city");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -256,7 +272,11 @@ public class CitiesCrudController {
         }
         ObservableList<City> filteredCities = FXCollections.observableArrayList();
         for (City city : citiesData) {
-            if (city.getName().getValue().contains(search)) {
+            if (String.valueOf(city.getId().getValue()).contains(search) ||
+                    city.getName().getValue().contains(search) ||
+                    String.valueOf(city.getLongitude().getValue()).contains(search) ||
+                    String.valueOf(city.getLatitude().getValue()).contains(search) ||
+                    String.valueOf(city.getCountryId().getValue()).contains(search)) {
                 filteredCities.add(city);
             }
         }

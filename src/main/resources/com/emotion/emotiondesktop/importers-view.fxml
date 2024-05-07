@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -49,6 +50,9 @@
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <effect>
+                        <DropShadow height="6.34" radius="2.67" width="6.34" />
+                     </effect>
                   </Button>
                   <Button fx:id="mapButton" mnemonicParsing="false" onAction="#showMapView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="View map">
                      <font>

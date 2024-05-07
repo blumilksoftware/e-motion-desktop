@@ -112,9 +112,11 @@ public class ProvidersCrudController {
         String color = saveColorField.getText();
         if (color.isEmpty() || name.isEmpty() || file.isEmpty()) {
             saveInfo.setText("Please fill in all fields");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (color.length() != 7) {
             saveInfo.setText("Color must be in #000000 format");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -135,9 +137,11 @@ public class ProvidersCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
                 saveInfo.setText("Provider saved");
+                saveInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 saveInfo.setText("Error while saving provider");
+                saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -145,6 +149,7 @@ public class ProvidersCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             saveInfo.setText("Error while saving provider");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -152,6 +157,7 @@ public class ProvidersCrudController {
         Provider selectedProvider = tableView.getSelectionModel().getSelectedItem();
         if (selectedProvider == null) {
             saveInfo.setText("Please select a provider to edit");
+            saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
         editNameField.setText(selectedProvider.getName().getValue());
@@ -163,6 +169,7 @@ public class ProvidersCrudController {
         Provider selectedProvider = tableView.getSelectionModel().getSelectedItem();
         if (selectedProvider == null) {
             editInfo.setText("Please select a provider to edit");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -171,9 +178,11 @@ public class ProvidersCrudController {
         String color = editColorField.getText();
         if (color.isEmpty() || name.isEmpty()) {
             editInfo.setText("Please fill in all fields");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         } else if (color.length() != 7) {
             editInfo.setText("Color must be in #000000 format");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -194,9 +203,11 @@ public class ProvidersCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("Provider edited");
+                editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 editInfo.setText("Error while editing provider");
+                editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -204,6 +215,7 @@ public class ProvidersCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             editInfo.setText("Error while editing provider");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -211,6 +223,7 @@ public class ProvidersCrudController {
         Provider selectedProvider = tableView.getSelectionModel().getSelectedItem();
         if (selectedProvider == null) {
             editInfo.setText("Please select a provider to delete");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
@@ -226,9 +239,11 @@ public class ProvidersCrudController {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("Provider deleted");
+                editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 refresh();
             } else {
                 editInfo.setText("Error while deleting provider");
+                editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
 
             connection.disconnect();
@@ -236,6 +251,7 @@ public class ProvidersCrudController {
         } catch (Exception e) {
             e.printStackTrace();
             editInfo.setText("Error while deleting provider");
+            editInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -247,7 +263,7 @@ public class ProvidersCrudController {
         }
         ObservableList<Provider> filteredProviders = FXCollections.observableArrayList();
         for (Provider provider : providersData) {
-            if (provider.getName().getValue().contains(search)) {
+            if (provider.getName().getValue().contains(search) || provider.getColor().getValue().contains(search)) {
                 filteredProviders.add(provider);
             }
         }
