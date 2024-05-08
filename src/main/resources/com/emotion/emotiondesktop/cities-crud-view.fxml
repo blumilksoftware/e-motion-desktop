@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -17,9 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.CitiesCrudController">
+<AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.CitiesCrudController">
    <children>
-      <BorderPane prefHeight="1080.0" prefWidth="1920.0">
+      <BorderPane prefHeight="768.0" prefWidth="1366.0">
          <left>
             <VBox spacing="20.0" style="-fx-background-color: #f4f8fd; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
                <children>
@@ -35,31 +36,49 @@
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="providersButton" mnemonicParsing="false" onAction="#showProvidersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="CRUD Providers">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="CRUD Opinions">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="CRUD Users">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="importersButton" mnemonicParsing="false" onAction="#showImportersView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="Importers">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="mapButton" mnemonicParsing="false" onAction="#showMapView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="View map">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
                <padding>
@@ -91,7 +110,10 @@
                   <HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 1 0 0;">
                      <children>
                         <TextField fx:id="searchField" style="-fx-background-color: ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchInTable" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Search" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchInTable" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Search">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
@@ -116,11 +138,14 @@
                               <TextField fx:id="saveLongitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
                               <Label text="Latitude" />
                               <TextField fx:id="saveLatitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
-                              <Label text="Country" />
+                              <Label text="Country ID" />
                               <TextField fx:id="saveCountryIdField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
                               <HBox spacing="10.0">
                                  <children>
-                                    <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveCity" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Save" />
+                                    <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveCity" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Save">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
                                  </children>
                               </HBox>
                               <Label fx:id="saveInfo" />
@@ -143,13 +168,22 @@
                               <TextField fx:id="editLongitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
                               <Label text="Latitude" />
                               <TextField fx:id="editLatitudeField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
-                              <Label text="Country" />
+                              <Label text="Country ID" />
                               <TextField fx:id="editCountryIdField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
                               <HBox spacing="10.0">
                                  <children>
-                                    <Button fx:id="selectButton" mnemonicParsing="false" onAction="#selectCity" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Select" />
-                                    <Button fx:id="editButton" mnemonicParsing="false" onAction="#editCity" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Edit" />
-                                    <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteCity" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Delete" />
+                                    <Button fx:id="selectButton" mnemonicParsing="false" onAction="#selectCity" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Select">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
+                                    <Button fx:id="editButton" mnemonicParsing="false" onAction="#editCity" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Edit">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
+                                    <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteCity" style="-fx-background-color: #ffffff; -fx-border-color: #4b5563; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 20;" text="Delete">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
                                  </children>
                               </HBox>
                               <Label fx:id="editInfo" />

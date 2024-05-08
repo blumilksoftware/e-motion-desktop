@@ -12,6 +12,7 @@
 <?import com.sothawo.mapjfx.MapView?>
 
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.Cursor?>
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.MapController">
    <children>
       <BorderPane prefHeight="1080.0" prefWidth="1920.0">
@@ -22,31 +23,49 @@
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="countriesButton" mnemonicParsing="false" onAction="#showCountriesCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="CRUD Countries">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="providersButton" mnemonicParsing="false" onAction="#showProvidersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="CRUD Providers">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="opinionsButton" mnemonicParsing="false" onAction="#showOpinionsCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="CRUD Opinions">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="usersButton" mnemonicParsing="false" onAction="#showUsersCrudView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="CRUD Users">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="importersButton" mnemonicParsing="false" onAction="#showImportersView" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="Importers">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="mapButton" mnemonicParsing="false" style="-fx-background-color: #f4f8fd; -fx-font-weight: 800; -fx-font-family: ui-sans-serif; -fx-font-size: 15" text="View map">
                      <font>

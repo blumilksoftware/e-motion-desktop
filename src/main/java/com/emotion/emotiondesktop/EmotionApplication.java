@@ -21,7 +21,7 @@ public class EmotionApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("cities-crud-view.fxml"));
         Parent root = fxmlLoader.load();
         stage.setTitle("E-motions Cities CRUD");
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 1366, 768));
         stage.show();
     }
 
@@ -29,7 +29,7 @@ public class EmotionApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("countries-crud-view.fxml"));
         Parent root = fxmlLoader.load();
         stage.setTitle("E-motions Countries CRUD");
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 1366, 768));
         stage.show();
     }
 
@@ -37,7 +37,7 @@ public class EmotionApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("opinions-crud-view.fxml"));
         Parent root = fxmlLoader.load();
         stage.setTitle("E-motions Opinions CRUD");
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 1366, 768));
         stage.show();
     }
 
@@ -45,7 +45,7 @@ public class EmotionApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("providers-crud-view.fxml"));
         Parent root = fxmlLoader.load();
         stage.setTitle("E-motions Providers CRUD");
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 1366, 768));
         stage.show();
     }
 
@@ -53,7 +53,7 @@ public class EmotionApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("users-crud-view.fxml"));
         Parent root = fxmlLoader.load();
         stage.setTitle("E-motions Users CRUD");
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 1366, 768));
         stage.show();
     }
 
@@ -61,7 +61,7 @@ public class EmotionApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("importers-view.fxml"));
         Parent root = fxmlLoader.load();
         stage.setTitle("E-motions Importers");
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 1366, 768));
         stage.show();
     }
 
@@ -69,7 +69,7 @@ public class EmotionApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
         stage.setTitle("Login to E-Motion Desktop App");
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 1366, 768));
         stage.show();
     }
 
@@ -77,7 +77,7 @@ public class EmotionApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EmotionApplication.class.getResource("map-view.fxml"));
         Parent root = fxmlLoader.load();
         stage.setTitle("E-motions Map");
-        stage.setScene(new Scene(root, 1920, 1080));
+        stage.setScene(new Scene(root, 1366, 768));
         stage.show();
     }
 

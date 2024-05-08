@@ -95,8 +95,8 @@ public class CitiesCrudController {
                 JSONObject cityObject = citiesArray.getJSONObject(i);
                 int id = cityObject.getInt("id");
                 String name = cityObject.getString("name");
-                double longitude = cityObject.optDouble("longitude");
-                double latitude = cityObject.optDouble("latitude");
+                double longitude = cityObject.optDouble("longitude", 0);
+                double latitude = cityObject.optDouble("latitude", 0);
                 int countryId = cityObject.getJSONObject("country").getInt("id");
 
                 City city = new City(id, name, longitude, latitude, countryId);
