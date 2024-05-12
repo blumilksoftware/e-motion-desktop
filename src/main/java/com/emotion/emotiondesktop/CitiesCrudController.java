@@ -1,10 +1,7 @@
 package com.emotion.emotiondesktop;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -71,24 +68,12 @@ public class CitiesCrudController {
         fetchCityRecords();
     }
 
-    private void fetchCityRecords() {
+    public void fetchCityRecords() {
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/cities";
-            URL url = new URL(apiUrl);
+            HttpResponse response = HttpRequest.sendHttpRequest(apiUrl, "GET", null);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-
-            JSONObject jsonResponse = new JSONObject(response.toString());
+            JSONObject jsonResponse = new JSONObject(response.getResponseBody());
             JSONArray citiesArray = jsonResponse.getJSONArray("cities");
 
             for (int i = 0; i < citiesArray.length(); i++) {
@@ -103,7 +88,6 @@ public class CitiesCrudController {
                 citiesData.add(city);
             }
 
-            connection.disconnect();
             tableView.setItems(citiesData);
 
         } catch (Exception e) {
@@ -116,11 +100,11 @@ public class CitiesCrudController {
         String longitude = saveLongitudeField.getText();
         String latitude = saveLatitudeField.getText();
         String countryId = saveCountryIdField.getText();
-        if (longitude.isEmpty() || latitude.isEmpty() || countryId.isEmpty() || name.isEmpty()) {
+        if (!Validation.isNotEmpty(name, longitude, latitude, countryId)) {
             saveInfo.setText("Please fill in all fields");
             saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
-        } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !countryId.matches("[-+]?[0-9]*\\.?[0-9]+")) {
+        } else if (!Validation.isValidNumber(longitude) || !Validation.isValidNumber(latitude) || !Validation.isValidNumber(countryId)) {
             saveInfo.setText("Longitude, latitude and country id must be numbers");
             saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
@@ -128,19 +112,10 @@ public class CitiesCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/cities";
-            URL url = new URL(apiUrl);
+            HttpResponse response = HttpRequest.sendHttpRequest(apiUrl, "GET", "{\"name\": \"" + name + "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"country_id\": " + countryId + "}");
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = response.getResponseCode();
 
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"name\": \"" + name + "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"country_id\": " + countryId + "}";
-            connection.getOutputStream().write(jsonInputString.getBytes());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
                 saveInfo.setText("City saved");
                 saveInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -149,8 +124,6 @@ public class CitiesCrudController {
                 saveInfo.setText("Error while saving city");
                 saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,11 +158,11 @@ public class CitiesCrudController {
         String longitude = editLongitudeField.getText();
         String latitude = editLatitudeField.getText();
         String countryId = editCountryIdField.getText();
-        if (longitude.isEmpty() || latitude.isEmpty() || countryId.isEmpty() || name.isEmpty()) {
+        if (!Validation.isNotEmpty(name, longitude, latitude, countryId)) {
             editInfo.setText("Please fill in all fields");
             editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
-        } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+")) {
+        } else if (!Validation.isValidNumber(longitude) || !Validation.isValidNumber(latitude) || !Validation.isValidNumber(countryId)) {
             editInfo.setText("Longitude and latitude must be numbers");
             editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
@@ -197,19 +170,10 @@ public class CitiesCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/cities/" + selectedCity.getId().get();
-            URL url = new URL(apiUrl);
+            HttpResponse response = HttpRequest.sendHttpRequest(apiUrl, "PUT", "{\"name\": \"" + name + "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"country_id\": " + countryId + "}");
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = response.getResponseCode();
 
-            connection.setRequestMethod("PUT");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"name\": \"" + name + "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"country_id\": " + countryId + "}";
-            connection.getOutputStream().write(jsonInputString.getBytes());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("City edited");
                 editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -218,8 +182,6 @@ public class CitiesCrudController {
                 editInfo.setText("Error while editing city");
                 editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -238,14 +200,10 @@ public class CitiesCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/cities/" + selectedCity.getId().get();
-            URL url = new URL(apiUrl);
+            HttpResponse response = HttpRequest.sendHttpRequest(apiUrl, "DELETE", null);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = response.getResponseCode();
 
-            connection.setRequestMethod("DELETE");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("City deleted");
                 editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -254,8 +212,6 @@ public class CitiesCrudController {
                 editInfo.setText("Error while deleting city");
                 editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,17 +1,17 @@
 package com.emotion.emotiondesktop;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
 
 public class ProvidersCrudController {
 
@@ -27,6 +27,12 @@ public class ProvidersCrudController {
     private TextField saveColorField;
     @FXML
     private TextField editColorField;
+    @FXML
+    private TextField saveWebUrlField;
+    @FXML
+    private TextField saveAndroidUrlField;
+    @FXML
+    private TextField saveIosUrlField;
     @FXML
     private TextField searchField;
     @FXML
@@ -68,21 +74,9 @@ public class ProvidersCrudController {
     private void fetchProviderRecords() {
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/providers";
-            URL url = new URL(apiUrl);
+            HttpResponse httpResponse = HttpRequest.sendHttpRequest(apiUrl, "GET", null);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-
-            JSONObject jsonResponse = new JSONObject(response.toString());
+            JSONObject jsonResponse = new JSONObject(httpResponse.getResponseBody());
             JSONArray providersArray = jsonResponse.getJSONArray("providers");
 
             for (int i = 0; i < providersArray.length(); i++) {
@@ -98,7 +92,6 @@ public class ProvidersCrudController {
                 providersData.add(provider);
             }
 
-            connection.disconnect();
             tableView.setItems(providersData);
 
         } catch (Exception e) {
@@ -110,6 +103,9 @@ public class ProvidersCrudController {
         String name = saveNameField.getText();
         String file = saveFileField.getText();
         String color = saveColorField.getText();
+        String webUrl = saveWebUrlField.getText();
+        String androidUrl = saveAndroidUrlField.getText();
+        String iosUrl = saveIosUrlField.getText();
         if (color.isEmpty() || name.isEmpty() || file.isEmpty()) {
             saveInfo.setText("Please fill in all fields");
             saveInfo.setTextFill(javafx.scene.paint.Color.RED);
@@ -122,19 +118,10 @@ public class ProvidersCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/providers";
-            URL url = new URL(apiUrl);
+            HttpResponse httpResponse = HttpRequest.sendHttpRequest(apiUrl, "POST", "{\"name\": \"" + name + "\", \"color\": \"" + color + "\", \"file\": \"" + file + "\", \"url\": \"" + webUrl + "\", \"android_url\": \"" + androidUrl + "\", \"ios_url\": \"" + iosUrl + "\"}");
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = httpResponse.getResponseCode();
 
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"name\": \"" + name +  "\", \"color\": \"" + color + "\", \"file\": \"" + file + "\"}";
-            connection.getOutputStream().write(jsonInputString.getBytes());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
                 saveInfo.setText("Provider saved");
                 saveInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -143,8 +130,6 @@ public class ProvidersCrudController {
                 saveInfo.setText("Error while saving provider");
                 saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -188,19 +173,10 @@ public class ProvidersCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/providers/" + selectedProvider.getName();
-            URL url = new URL(apiUrl);
+            HttpResponse httpResponse = HttpRequest.sendHttpRequest(apiUrl, "PUT", "{\"name\": \"" + name + "\", \"color\": \"" + color + "\", \"file\": \"" + file + "\"}");
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = httpResponse.getResponseCode();
 
-            connection.setRequestMethod("PUT");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"name\": \"" + name +  "\", \"color\": \"" + color + "\", \"file\": \"" + file + "\"}";
-            connection.getOutputStream().write(jsonInputString.getBytes());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("Provider edited");
                 editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -209,8 +185,6 @@ public class ProvidersCrudController {
                 editInfo.setText("Error while editing provider");
                 editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -229,14 +203,10 @@ public class ProvidersCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/providers/" + selectedProvider.getName();
-            URL url = new URL(apiUrl);
+            HttpResponse httpResponse = HttpRequest.sendHttpRequest(apiUrl, "DELETE", null);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = httpResponse.getResponseCode();
 
-            connection.setRequestMethod("DELETE");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("Provider deleted");
                 editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -245,8 +215,6 @@ public class ProvidersCrudController {
                 editInfo.setText("Error while deleting provider");
                 editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();

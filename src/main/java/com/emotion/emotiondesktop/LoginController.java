@@ -7,15 +7,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.Getter;
 import lombok.Setter;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.net.HttpURLConnection;
 
 public class LoginController {
 
@@ -31,8 +26,6 @@ public class LoginController {
     @Getter
     @Setter
     private Label loginInfo;
-    @Setter
-    private String apiUrl = "https://dev.escooters.blumilk.pl/api/login";
     @Getter
     private static String accessToken;
     @Setter
@@ -53,20 +46,13 @@ public class LoginController {
         }
 
         try {
-            String jsonPayload = "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}";
+            String apiUrl = "https://dev.escooters.blumilk.pl/api/login";
+            HttpResponse httpResponse = HttpRequest.sendHttpRequest(apiUrl, "POST", "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}");
 
-            URL url = new URL(apiUrl);
-
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            JSONObject jsonResponse = getJsonObject(connection, jsonPayload);
+            JSONObject jsonResponse = new JSONObject(httpResponse.getResponseBody());
 
             accessToken = jsonResponse.getString("access_token");
-            JSONArray roleArray = jsonResponse.getJSONArray("0");
+            JSONArray roleArray = jsonResponse.getJSONArray("abilities");
 
             for (int i = 0; i < roleArray.length(); i++) {
                 String currentValue = roleArray.getString(i);
@@ -76,36 +62,17 @@ public class LoginController {
                 }
             }
 
-            int responseCode = connection.getResponseCode();
+            int responseCode = httpResponse.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK && isAdmin) {
                 loginInfo.setText("Login successful");
                 loginInfo.setTextFill(javafx.scene.paint.Color.GREEN);
                 EmotionApplication.showCitiesCrudView();
             }
 
-            connection.disconnect();
-
         } catch (Exception e) {
             e.printStackTrace();
             loginInfo.setText("Invalid email or password.");
             loginInfo.setTextFill(javafx.scene.paint.Color.RED);
         }
-    }
-
-    private static JSONObject getJsonObject(HttpURLConnection connection, String jsonPayload) throws IOException {
-        DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
-        outputStream.writeBytes(jsonPayload);
-        outputStream.flush();
-        outputStream.close();
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        StringBuilder response = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            response.append(line);
-        }
-        reader.close();
-
-        return new JSONObject(response.toString());
     }
 }

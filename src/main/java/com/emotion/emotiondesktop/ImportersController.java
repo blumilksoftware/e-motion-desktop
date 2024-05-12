@@ -1,16 +1,17 @@
 package com.emotion.emotiondesktop;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
 
 public class ImportersController {
 
@@ -51,21 +52,9 @@ public class ImportersController {
     private void fetchImporterRecords() {
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/importers";
-            URL url = new URL(apiUrl);
+            HttpResponse httpResponse = HttpRequest.sendHttpRequest(apiUrl, "GET", null);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-
-            JSONObject jsonResponse = new JSONObject(response.toString());
+            JSONObject jsonResponse = new JSONObject(httpResponse.getResponseBody());
             JSONArray importersArray = jsonResponse.getJSONArray("importInfo");
 
             for (int i = 0; i < importersArray.length(); i++) {
@@ -84,7 +73,6 @@ public class ImportersController {
                 }
             }
 
-            connection.disconnect();
             tableView.setItems(importersData);
 
         } catch (Exception e) {
@@ -95,22 +83,15 @@ public class ImportersController {
     public void runImporters() {
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/run-importers";
-            URL url = new URL(apiUrl);
+            HttpResponse httpResponse = HttpRequest.sendHttpRequest(apiUrl, "POST", null);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-            connection.setDoOutput(true);
-
-            int responseCode = connection.getResponseCode();
+            int responseCode = httpResponse.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText("Importers run successfully");
                 alert.showAndWait();
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
