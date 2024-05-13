@@ -1,4 +1,6 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Helper;
+
+import com.emotion.emotiondesktop.Controller.LoginController;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -7,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpRequest {
-    static HttpResponse sendHttpRequest(String apiUrl, String method, String jsonInputString) throws Exception {
+    public static HttpResponse sendHttpRequest(String apiUrl, String method, String jsonInputString) throws Exception {
         URL url = new URL(apiUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod(method);

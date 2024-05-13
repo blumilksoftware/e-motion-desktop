@@ -1,4 +1,4 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Helper;
 
 import lombok.Getter;
 

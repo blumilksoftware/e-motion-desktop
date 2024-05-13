@@ -1,4 +1,4 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Helper;
 
 public class Validation {
     public static boolean isValidNumber(String input) {

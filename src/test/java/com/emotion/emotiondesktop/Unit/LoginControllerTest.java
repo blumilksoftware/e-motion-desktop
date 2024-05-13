@@ -1,6 +1,6 @@
 package com.emotion.emotiondesktop.Unit;
 
-import com.emotion.emotiondesktop.LoginController;
+import com.emotion.emotiondesktop.Controller.LoginController;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;

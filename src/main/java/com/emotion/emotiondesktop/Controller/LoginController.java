@@ -1,5 +1,8 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Controller;
 
+import com.emotion.emotiondesktop.EmotionApplication;
+import com.emotion.emotiondesktop.Helper.HttpRequest;
+import com.emotion.emotiondesktop.Helper.HttpResponse;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +29,7 @@ public class LoginController {
     @Getter
     @Setter
     private Label loginInfo;
+    @Setter
     @Getter
     private static String accessToken;
     @Setter

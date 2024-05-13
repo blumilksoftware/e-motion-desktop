@@ -1,5 +1,9 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Controller;
 
+import com.emotion.emotiondesktop.EmotionApplication;
+import com.emotion.emotiondesktop.Helper.HttpRequest;
+import com.emotion.emotiondesktop.Helper.HttpResponse;
+import com.emotion.emotiondesktop.Model.Provider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

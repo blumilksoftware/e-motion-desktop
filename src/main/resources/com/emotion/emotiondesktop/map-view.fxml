@@ -13,7 +13,7 @@
 
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.Cursor?>
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.MapController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.Controller.MapController">
    <children>
       <BorderPane prefHeight="1080.0" prefWidth="1920.0">
          <left>
