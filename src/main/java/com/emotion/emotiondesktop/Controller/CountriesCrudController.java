@@ -261,11 +261,11 @@ public class CountriesCrudController {
     }
 
     public void showOpinionsCrudView() throws IOException {
-        EmotionApplication.showOpinionsCrudView();
+
     }
 
     public void showUsersCrudView() throws IOException {
-        EmotionApplication.showUsersCrudView();
+
     }
 
     public void showImportersView() throws IOException {

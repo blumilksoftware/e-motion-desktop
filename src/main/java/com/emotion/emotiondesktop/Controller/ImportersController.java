@@ -135,11 +135,11 @@ public class ImportersController {
     }
 
     public void showOpinionsCrudView() throws IOException {
-        EmotionApplication.showOpinionsCrudView();
+
     }
 
     public void showUsersCrudView() throws IOException {
-        EmotionApplication.showUsersCrudView();
+
     }
 
     public void showMapView() throws IOException {

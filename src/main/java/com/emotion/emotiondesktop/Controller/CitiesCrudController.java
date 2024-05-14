@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -52,8 +53,9 @@ public class CitiesCrudController {
     private TableColumn<City, Double> latitudeColumn;
     @FXML
     private TableColumn<City, Integer> countryIdColumn;
+    @Setter
     @Getter
-    private final ObservableList<City> citiesData = FXCollections.observableArrayList();
+    private ObservableList<City> citiesData = FXCollections.observableArrayList();
     @FXML
     private Label saveInfo;
     @FXML
@@ -254,11 +256,11 @@ public class CitiesCrudController {
     }
 
     public void showOpinionsCrudView() throws IOException {
-        EmotionApplication.showOpinionsCrudView();
+
     }
 
     public void showUsersCrudView() throws IOException {
-        EmotionApplication.showUsersCrudView();
+
     }
 
     public void showImportersView() throws IOException {

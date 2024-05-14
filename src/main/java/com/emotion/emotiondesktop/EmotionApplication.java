@@ -6,11 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 
 public class EmotionApplication extends Application {
 
+    @Setter
     @Getter
     private static Stage stage;
 
