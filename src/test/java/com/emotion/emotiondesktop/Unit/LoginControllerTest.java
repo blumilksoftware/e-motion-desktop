@@ -32,7 +32,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    void testUserLogInWhenFieldsAreEmpty() {
+    void testUserCannotLogInWhenFieldsAreEmpty() {
         TextField emailField = mock(TextField.class);
         when(emailField.getText()).thenReturn("");
 
@@ -47,7 +47,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    void testUserLogInWhenInvalidEmailFormat() {
+    void testUserCannotLoginWithInvalidEmail() {
         TextField emailField = mock(TextField.class);
         PasswordField passwordField = mock(PasswordField.class);
         when(emailField.getText()).thenReturn("invalidemail");
