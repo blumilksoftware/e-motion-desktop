@@ -72,7 +72,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    void testUserLogInWhenConnectionSucceeds() throws Exception {
+    void testUserCanLogInWhenConnectionSucceeds() throws Exception {
         TextField emailField = mock(TextField.class);
         PasswordField passwordField = mock(PasswordField.class);
         HttpURLConnection connection = mock(HttpURLConnection.class);
