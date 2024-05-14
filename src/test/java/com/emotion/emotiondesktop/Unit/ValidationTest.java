@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ValidationTest {
 
     @Test
-    public void testIsValidNumber_validNumbers() {
+    public void testIsValidNumberValidNumbers() {
         assertTrue(Validation.isValidNumber("123"));
         assertTrue(Validation.isValidNumber("123.456"));
         assertTrue(Validation.isValidNumber("-123.456"));
@@ -15,7 +15,7 @@ public class ValidationTest {
     }
 
     @Test
-    public void testIsValidNumber_invalidNumbers() {
+    public void testIsValidNumberInvalidNumbers() {
         assertFalse(Validation.isValidNumber(""));
         assertFalse(Validation.isValidNumber("abc"));
         assertFalse(Validation.isValidNumber("12a3"));
@@ -25,13 +25,13 @@ public class ValidationTest {
     }
 
     @Test
-    public void testIsNotEmpty_singleInput() {
+    public void testIsNotEmptySingleInput() {
         assertTrue(Validation.isNotEmpty("test"));
         assertFalse(Validation.isNotEmpty(""));
     }
 
     @Test
-    public void testIsNotEmpty_multipleInputs() {
+    public void testIsNotEmptyMultipleInputs() {
         assertTrue(Validation.isNotEmpty("test1", "test2"));
         assertFalse(Validation.isNotEmpty("", "test2"));
         assertFalse(Validation.isNotEmpty("test1", ""));

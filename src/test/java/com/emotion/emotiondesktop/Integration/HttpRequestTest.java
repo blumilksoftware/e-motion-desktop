@@ -4,13 +4,15 @@ import com.emotion.emotiondesktop.Helper.HttpRequest;
 import com.emotion.emotiondesktop.Helper.HttpResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import java.io.ByteArrayInputStream;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class HttpRequestTest {
 
@@ -20,7 +22,7 @@ class HttpRequestTest {
     }
 
     @Test
-    void testSendHttpRequest_Success() throws Exception {
+    void testSendHttpRequestSuccess() throws Exception {
         String apiUrl = "https://dev.escooters.blumilk.pl/api/login";
         String method = "POST";
         String email = "admin@example.com";
@@ -41,7 +43,7 @@ class HttpRequestTest {
     }
 
     @Test
-    void testSendHttpRequest_Failure() throws Exception {
+    void testSendHttpRequestFailure() throws Exception {
         String apiUrl = "https://dev.escooters.blumilk.pl/api/login";
         String method = "POST";
         String email = "test@test.com";
@@ -63,6 +65,5 @@ class HttpRequestTest {
         } catch (Exception e) {
             assertEquals("HTTP request failed with response code: 401", e.getMessage());
         }
-
     }
 }

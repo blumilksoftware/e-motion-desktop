@@ -44,7 +44,7 @@ public class LoginControllerTest {
     HttpURLConnection httpURLConnection;
 
     @Test
-    void testUserLogIn_WhenConnectionFails() throws Exception {
+    void testUserLogInWhenConnectionFails() throws Exception {
         TextField emailField = mock(TextField.class);
         PasswordField passwordField = mock(PasswordField.class);
         HttpURLConnection connection = mock(HttpURLConnection.class);
@@ -72,7 +72,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    void testUserLogIn_WhenConnectionSucceeds() throws Exception {
+    void testUserLogInWhenConnectionSucceeds() throws Exception {
         TextField emailField = mock(TextField.class);
         PasswordField passwordField = mock(PasswordField.class);
         HttpURLConnection connection = mock(HttpURLConnection.class);
@@ -100,7 +100,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    void testUserLogIn_WhenAdmin() throws Exception {
+    void testUserLogInWhenAdmin() throws Exception {
         TextField emailField = mock(TextField.class);
         PasswordField passwordField = mock(PasswordField.class);
         HttpURLConnection connection = mock(HttpURLConnection.class);
@@ -128,7 +128,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    void testUserLogIn_WhenNotAdmin() throws Exception {
+    void testUserLogInWhenNotAdmin() throws Exception {
         TextField emailField = mock(TextField.class);
         PasswordField passwordField = mock(PasswordField.class);
         HttpURLConnection connection = mock(HttpURLConnection.class);
@@ -158,7 +158,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    void testUserLogIn_WhenConnectionSucceedsAndAdmin() throws Exception {
+    void testUserLogInWhenConnectionSucceedsAndAdmin() throws Exception {
         TextField emailField = mock(TextField.class);
         PasswordField passwordField = mock(PasswordField.class);
         HttpURLConnection connection = mock(HttpURLConnection.class);
