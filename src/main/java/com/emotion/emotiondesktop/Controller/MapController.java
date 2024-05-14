@@ -1,6 +1,8 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Controller;
 
 import java.io.IOException;
+
+import com.emotion.emotiondesktop.EmotionApplication;
 import com.sothawo.mapjfx.*;
 import javafx.fxml.FXML;
 public class MapController {
@@ -52,11 +54,11 @@ public class MapController {
     }
 
     public void showOpinionsCrudView() throws IOException {
-        EmotionApplication.showOpinionsCrudView();
+
     }
 
     public void showUsersCrudView() throws IOException {
-        EmotionApplication.showUsersCrudView();
+
     }
 
     public void showImportersView() throws IOException {

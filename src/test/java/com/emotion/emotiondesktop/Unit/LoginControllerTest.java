@@ -1,18 +1,19 @@
 package com.emotion.emotiondesktop.Unit;
 
-import com.emotion.emotiondesktop.LoginController;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import com.emotion.emotiondesktop.Controller.LoginController;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
 import static org.mockito.Mockito.*;
 
-class LoginControllerTest {
+public class LoginControllerTest {
 
     @BeforeAll
     public static void initJFX() {
@@ -22,41 +23,43 @@ class LoginControllerTest {
         }
     }
 
-    @Mock
-    private TextField emailFieldMock;
-    @Mock
-    private PasswordField passwordFieldMock;
-    @Mock
-    private Label loginInfoMock;
-
-    private LoginController loginController;
+    @InjectMocks
+    LoginController loginController;
 
     @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        loginController = new LoginController();
-        loginController.setEmailField(emailFieldMock);
-        loginController.setPasswordField(passwordFieldMock);
-        loginController.setLoginInfo(loginInfoMock);
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testUserCannotLoginWithoutCredentials() {
-        when(emailFieldMock.getText()).thenReturn("");
-        when(passwordFieldMock.getText()).thenReturn("");
+    void testUserCannotLogInWhenFieldsAreEmpty() {
+        TextField emailField = mock(TextField.class);
+        when(emailField.getText()).thenReturn("");
+
+        loginController.setEmailField(emailField);
+        loginController.setPasswordField(mock(PasswordField.class));
+        loginController.setLoginInfo(mock(Label.class));
 
         loginController.userLogIn();
 
-        verify(loginInfoMock).setText("Please fill in all fields");
+        verify(loginController.getLoginInfo()).setText("Please fill in all fields");
+        verify(loginController.getLoginInfo()).setTextFill(javafx.scene.paint.Color.RED);
     }
 
     @Test
-    public void testUserCannotLoginWithInvalidEmailFormat() {
-        when(emailFieldMock.getText()).thenReturn("invalidemail");
-        when(passwordFieldMock.getText()).thenReturn("password");
+    void testUserCannotLoginWithInvalidEmail() {
+        TextField emailField = mock(TextField.class);
+        PasswordField passwordField = mock(PasswordField.class);
+        when(emailField.getText()).thenReturn("invalidemail");
+        when(passwordField.getText()).thenReturn("password");
+
+        loginController.setEmailField(emailField);
+        loginController.setPasswordField(passwordField);
+        loginController.setLoginInfo(mock(Label.class));
 
         loginController.userLogIn();
 
-        verify(loginInfoMock).setText("Invalid email format");
+        verify(loginController.getLoginInfo()).setText("Invalid email format");
+        verify(loginController.getLoginInfo()).setTextFill(javafx.scene.paint.Color.RED);
     }
 }

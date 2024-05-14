@@ -1,4 +1,4 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Model;
 
 import javafx.beans.property.*;
 import lombok.Getter;

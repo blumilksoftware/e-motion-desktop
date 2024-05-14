@@ -1,16 +1,22 @@
-package com.emotion.emotiondesktop;
+package com.emotion.emotiondesktop.Controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.emotion.emotiondesktop.EmotionApplication;
+import com.emotion.emotiondesktop.Helper.HttpRequest;
+import com.emotion.emotiondesktop.Helper.HttpResponse;
+import com.emotion.emotiondesktop.Helper.Validation;
+import com.emotion.emotiondesktop.Model.Country;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
 
 public class CountriesCrudController {
 
@@ -70,21 +76,9 @@ public class CountriesCrudController {
     private void fetchCountryRecords() {
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/countries";
-            URL url = new URL(apiUrl);
+            HttpResponse response = HttpRequest.sendHttpRequest(apiUrl, "GET", null);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-
-            JSONObject jsonResponse = new JSONObject(response.toString());
+            JSONObject jsonResponse = new JSONObject(response.getResponseBody());
             JSONArray countriesArray = jsonResponse.getJSONArray("countries");
 
             for (int i = 0; i < countriesArray.length(); i++) {
@@ -99,7 +93,6 @@ public class CountriesCrudController {
                 countriesData.add(country);
             }
 
-            connection.disconnect();
             tableView.setItems(countriesData);
 
         } catch (Exception e) {
@@ -112,11 +105,11 @@ public class CountriesCrudController {
         String longitude = saveLongitudeField.getText();
         String latitude = saveLatitudeField.getText();
         String iso = saveIsoField.getText();
-        if (longitude.isEmpty() || latitude.isEmpty() || iso.isEmpty() || name.isEmpty()) {
+        if (!Validation.isNotEmpty(name, longitude, latitude, iso)) {
             saveInfo.setText("Please fill in all fields");
             saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
-        } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+")) {
+        } else if (!Validation.isValidNumber(longitude) || !Validation.isValidNumber(latitude)){
             saveInfo.setText("Longitude and latitude must be numbers");
             saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
@@ -128,19 +121,10 @@ public class CountriesCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/countries";
-            URL url = new URL(apiUrl);
+            HttpResponse response = HttpRequest.sendHttpRequest(apiUrl, "POST", "{\"name\": \"" + name +  "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"iso\": \"" + iso + "\"}");
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = response.getResponseCode();
 
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"name\": \"" + name +  "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"iso\": \"" + iso + "\"}";
-            connection.getOutputStream().write(jsonInputString.getBytes());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
                 saveInfo.setText("Country saved");
                 saveInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -149,8 +133,6 @@ public class CountriesCrudController {
                 saveInfo.setText("Error while saving country");
                 saveInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,11 +167,11 @@ public class CountriesCrudController {
         String longitude = editLongitudeField.getText();
         String latitude = editLatitudeField.getText();
         String iso = editIsoField.getText();
-        if (longitude.isEmpty() || latitude.isEmpty() || iso.isEmpty() || name.isEmpty()) {
+        if (!Validation.isNotEmpty(name, longitude, latitude, iso)) {
             editInfo.setText("Please fill in all fields");
             editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
-        } else if (!longitude.matches("[-+]?[0-9]*\\.?[0-9]+") || !latitude.matches("[-+]?[0-9]*\\.?[0-9]+")) {
+        } else if (!Validation.isValidNumber(longitude) || !Validation.isValidNumber(latitude)) {
             editInfo.setText("Longitude and latitude must be numbers");
             editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
@@ -201,19 +183,10 @@ public class CountriesCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/countries/" + selectedCountry.getId().get();
-            URL url = new URL(apiUrl);
+            HttpResponse response = HttpRequest.sendHttpRequest(apiUrl, "PUT", "{\"name\": \"" + name +  "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"iso\": \"" + iso + "\"}");
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = response.getResponseCode();
 
-            connection.setRequestMethod("PUT");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"name\": \"" + name +  "\", \"longitude\": " + longitude + ", \"latitude\": " + latitude + ", \"iso\": \"" + iso + "\"}";
-            connection.getOutputStream().write(jsonInputString.getBytes());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("Country edited");
                 editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -222,8 +195,6 @@ public class CountriesCrudController {
                 editInfo.setText("Error while editing country");
                 editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -242,14 +213,10 @@ public class CountriesCrudController {
 
         try {
             String apiUrl = "https://dev.escooters.blumilk.pl/api/admin/countries/" + selectedCountry.getId().get();
-            URL url = new URL(apiUrl);
+            HttpResponse response = HttpRequest.sendHttpRequest(apiUrl, "DELETE", null);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int responseCode = response.getResponseCode();
 
-            connection.setRequestMethod("DELETE");
-            connection.setRequestProperty("Authorization", "Bearer " + LoginController.getAccessToken());
-
-            int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 editInfo.setText("Country deleted");
                 editInfo.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -258,8 +225,6 @@ public class CountriesCrudController {
                 editInfo.setText("Error while deleting country");
                 editInfo.setTextFill(javafx.scene.paint.Color.RED);
             }
-
-            connection.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -296,11 +261,11 @@ public class CountriesCrudController {
     }
 
     public void showOpinionsCrudView() throws IOException {
-        EmotionApplication.showOpinionsCrudView();
+
     }
 
     public void showUsersCrudView() throws IOException {
-        EmotionApplication.showUsersCrudView();
+
     }
 
     public void showImportersView() throws IOException {

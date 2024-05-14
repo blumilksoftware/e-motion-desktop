@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.ProvidersCrudController">
+<AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emotion.emotiondesktop.Controller.ProvidersCrudController">
     <children>
         <BorderPane prefHeight="768.0" prefWidth="1366.0">
             <left>
@@ -92,7 +92,7 @@
                         <TableView fx:id="tableView" prefHeight="965.0" prefWidth="853.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 1 1 1 1;">
                             <columns>
                                 <TableColumn fx:id="nameColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Name" />
-                        <TableColumn fx:id="urlColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="URL" />
+                        <TableColumn fx:id="urlColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Web URL" />
                         <TableColumn fx:id="androidUrlColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="Android URL" />
                         <TableColumn fx:id="iosUrlColumn" prefWidth="300.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="IOS URL" />
                                 <TableColumn fx:id="fileColumn" minWidth="0.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-width: 0 0 1 1; -fx-font-size: 14;" text="File" />
@@ -135,6 +135,12 @@
                                     <children>
                                         <Label text="Name" />
                                         <TextField fx:id="saveNameField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                              <Label text="Web URL" />
+                              <TextField fx:id="saveWebUrlField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                              <Label text="Android URL" />
+                              <TextField fx:id="saveAndroidUrlField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
+                              <Label text="IOS URL" />
+                              <TextField fx:id="saveIosUrlField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
                               <Label text="File" />
                               <TextField fx:id="saveFileField" style="-fx-background-color: #ffffff; -fx-border-style: solid; -fx-border-color: #aabddd; -fx-border-radius: 5;" />
                                         <Label text="Color" />
