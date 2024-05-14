@@ -171,7 +171,7 @@ public class CountriesCrudController {
             editInfo.setText("Please fill in all fields");
             editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
-        } else if (!Validation.isValidNumber(longitude) || !Validation.isValidNumber(latitude)){
+        } else if (!Validation.isValidNumber(longitude) || !Validation.isValidNumber(latitude)) {
             editInfo.setText("Longitude and latitude must be numbers");
             editInfo.setTextFill(javafx.scene.paint.Color.RED);
             return;
